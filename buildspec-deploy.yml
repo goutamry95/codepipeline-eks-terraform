@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    GITHUB_REPO_URL: https://github.com/sudhakarbastawade2303/code-pipeline-project.git
+    GITHUB_REPO_URL: https://github.com/goutamry95/codepipeline-eks-terraform.git
     GITHUB_BRANCH: master
 
 phases:
