@@ -35,3 +35,8 @@ variable "github_token" {
   type        = string
   sensitive   = true
 }
+
+variable "key_pair_name" {
+  description = "SSH key pair name to connect to EC2"
+  type        = string
+}
