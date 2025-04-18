@@ -198,3 +198,34 @@ resource "aws_codepipeline" "pipeline" {
   }
 }
 
+resource "aws_iam_policy" "codepipeline_s3_access" {
+  name        = "codepipeline-s3-access-policy"
+  description = "Allow CodePipeline to access S3 bucket"
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = [
+          "s3:GetObject",
+          "s3:GetObjectVersion",
+          "s3:PutObject",
+          "s3:PutObjectAcl"
+        ],
+        Resource = "arn:aws:s3:::codepipeline-us-west-2-*/*"
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "s3:ListBucket"
+        ],
+        Resource = "arn:aws:s3:::codepipeline-us-west-2-*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "codepipeline_s3_attach" {
+  role       = aws_iam_role.codepipeline_role.name
+  policy_arn = aws_iam_policy.codepipeline_s3_access.arn
+}
