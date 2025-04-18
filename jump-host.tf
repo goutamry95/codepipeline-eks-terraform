@@ -1,5 +1,5 @@
 resource "aws_instance" "jump_host" {
-  ami           = "ami-0c2b8ca1dad447f8a" # Amazon Linux 2 AMI (make sure it's valid for your region)
+  ami           = "ami-05572e392e80aee89" # Amazon Linux 2 AMI (make sure it's valid for your region)
   instance_type = "t2.micro"
   subnet_id     = module.vpc.public_subnets[0] # You can change to [1] if you want the second subnet
 
